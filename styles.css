@@ -1,0 +1,69 @@
+        body {
+          margin: 0;
+          padding: 0;
+          overflow: hidden;
+        }
+
+        #game-container {
+          width: 100%;
+          height: 100vh;
+          position: relative;
+        }
+
+        .card {
+          width: 100px;
+          height: 150px;
+          background-color: white;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          display: inline-block;
+          margin: 10px;
+          cursor: pointer;
+          position: relative;
+        }
+
+        .card button {
+          display: block;
+        }
+
+        .hand {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          text-align: center;
+        }
+
+        .rose {
+          background-color: green;
+        }
+
+        .skull {
+          background-color: red;
+        }
+
+        .dead {
+          background-color: grey;
+        }
+
+        .table {
+          width: 100%;
+          height: 200px;
+          background-color: lightgray;
+          text-align: center;
+          display: flex;
+        }
+
+        .hidden {
+          background-color: white;
+        }
+
+        .graveyard {
+          width: 30%;
+          height: 150px;
+          background-color: grey;
+        }
+
+        .hide {
+          visibility: hidden;
+        }
