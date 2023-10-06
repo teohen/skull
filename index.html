@@ -3,33 +3,30 @@
 
 <head>
   <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Card Game</title>
   <link rel="stylesheet" type="text/css" href="styles.css" />
-  
 </head>
 
 <body>
   <div id="game-container">
-    <!-- Hand of Cards at the Bottom -->
-    <div class="hand">
+    <div class="table">
+      <h2>MESA</h2>
     </div>
-
-    <!-- Table for Playing Cards -->
-    <div class="table"></div>
-
-    <div class="graveyard" id="graveyard">
-      cemitério
-    </div>
-    <footer class="footer">
-      <div>
+    <div class="utils">
+      <div class="graveyard" id="graveyard">
+        <h2>CEMITÉRIO</h2>
+      </div>
+      <div class="footer">
         <button id="hideall" type="button">virar cartas</button>
         <button id="restart" type="button">recolher da mesa</button>
         <button id="hidehand" type="button">esconder mão</button>
         <button id="showhand" type="button">mostrar mão</button>
       </div>
-    </footer>
+    </div>
+    <div class="hand"></div>
   </div>
+
   <script src="script.js"></script>
 </body>
 

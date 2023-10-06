@@ -8,18 +8,22 @@
           width: 100%;
           height: 100vh;
           position: relative;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
         }
 
         .card {
-          width: 100px;
-          height: 150px;
+          width: 33%;
+          height: 30%;
           background-color: white;
           border: 1px solid #ccc;
           border-radius: 5px;
           display: inline-block;
-          margin: 10px;
+          margin: 3px;
           cursor: pointer;
           position: relative;
+          box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
         }
 
         .card button {
@@ -32,6 +36,9 @@
           left: 0;
           width: 100%;
           text-align: center;
+          height: 34%;
+          display: flex;
+          flex-direction: row;
         }
 
         .rose {
@@ -48,10 +55,13 @@
 
         .table {
           width: 100%;
-          height: 200px;
-          background-color: lightgray;
           text-align: center;
           display: flex;
+          height: 33%;
+          background-color: #8B4513;
+          /* Brown color for the table top */
+          box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+          /* Add a subtle shadow */
         }
 
         .hidden {
@@ -59,11 +69,35 @@
         }
 
         .graveyard {
-          width: 30%;
+          width: 50%;
           height: 150px;
-          background-color: grey;
+          background-color: #333;
+          margin-top: 20px;
+          border-radius: 5px;
+          margin-bottom: 10px;
+          text-align: center;
+          line-height: 5;
+        }
+
+        .graveyard h2 {
+          color: grey;
         }
 
         .hide {
           visibility: hidden;
+        }
+
+        .utils {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          height: 33%;
+        }
+
+        .footer {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          gap: 10px;
+          padding: 2px;
         }
