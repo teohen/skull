@@ -3,7 +3,12 @@ function createNode(data) {
   card.classList.add("card", "draggable", data.type)
   card.setAttribute("id", data.id)
   card.draggable = true
-  card.innerHTML = "o-o"
+  if (data.type == 'skull') {
+    card.innerHTML = `<h1 id=${data.id}>&#9940;</h1>`
+  } else {
+    card.innerHTML = `<h1 id=${data.id}>&#9989;</h1>`
+  }
+
   return card
 }
 
@@ -25,6 +30,17 @@ function defineSkull() {
     visible: true,
     pos: 0
   }
+}
+
+function cardInvert(e) {
+  for (let card of gcards) {
+    if (card.active) {
+      if (card.id == e.target.id) {
+        card.visible = !card.visible
+      }
+    }
+  }
+  renderGame()
 }
 
 const gcards = [
@@ -82,13 +98,16 @@ function renderGame() {
 
     if (!card.visible) {
       card.html.classList.add("hidden")
+      card.html.children[0].classList.add("hide")
     } else {
       card.html.classList.remove("hidden")
+      card.html.children[0].classList.remove("hide")
     }
     if (!card.active) {
       card.html.classList.remove("hidden")
       card.html.classList.add("dead")
       card.html.draggable = false
+      card.html.children[0].classList.add("hide")
     }
 
     if (card.place == 'hand') {
@@ -131,16 +150,7 @@ function mechanics() {
 
 
   for (let card of cardsList) {
-    card.addEventListener('click', (e) => {
-      for (let card of gcards) {
-        if (card.active) {
-          if (card.id == e.target.id) {
-            card.visible = !card.visible
-          }
-        }
-      }
-      renderGame()
-    })
+    card.addEventListener('click', cardInvert)
   }
 
   const hideAll = document.getElementById("hideall")
@@ -177,20 +187,17 @@ function mechanics() {
 
     renderGame()
   })
+
+  document.getElementById("hidehand")
+  hidehand.addEventListener('click', () => {
+    ghand.classList.add("hide")
+  })
+
+  document.getElementById("showhand")
+  showhand.addEventListener('click', () => {
+    ghand.classList.remove("hide")
+  })
 }
-
-const hidehand = document.getElementById("hidehand")
-hidehand.addEventListener('click', () => {
-  ghand.classList.add("hide")
-})
-
-const showhand = document.getElementById("showhand")
-showhand.addEventListener('click', () => {
-  ghand.classList.remove("hide")
-})
-
-
-
 
 let selected = 0
 
