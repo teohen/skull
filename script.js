@@ -7,6 +7,26 @@ function createNode(data) {
   return card
 }
 
+function getRandomNumber() {
+  const randomNumber = Math.random();
+  const result = Math.floor(randomNumber * 4) + 1;
+  return result;
+}
+
+function defineSkull() {
+  const number = getRandomNumber()
+
+  gcards[number - 1] = {
+    id: number,
+    type: 'skull',
+    html: createNode({ id: number, type: 'skull' }),
+    place: 'hand',
+    active: true,
+    visible: true,
+    pos: 0
+  }
+}
+
 const gcards = [
   {
     id: 1,
@@ -37,8 +57,8 @@ const gcards = [
   },
   {
     id: 4,
-    type: 'skull',
-    html: createNode({ id: 4, type: 'skull' }),
+    type: 'rose',
+    html: createNode({ id: 4, type: 'rose' }),
     place: 'hand',
     active: true,
     visible: true,
@@ -170,9 +190,13 @@ showhand.addEventListener('click', () => {
 })
 
 
+
+
 let selected = 0
 
 let tablePos = 0
+
+defineSkull()
 
 renderGame()
 
