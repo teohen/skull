@@ -3,6 +3,7 @@ function createNode(data) {
   card.classList.add("card", "draggable", data.type)
   card.setAttribute("id", data.id)
   card.draggable = true
+  card.innerHTML = "o-o"
   return card
 }
 
