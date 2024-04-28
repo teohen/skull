@@ -10,23 +10,14 @@
 
 <body>
   <div id="game-container">
-    <div class="table">
-      <h2>MESA</h2>
-    </div>
+    <div class="table"></div>
+    <div class="cards"></div>
     <div class="utils">
-      <div class="graveyard" id="graveyard">
-        <h2>&#128465;</h2>
-      </div>
-      <div class="footer">
-        <button id="hideall" type="button">virar cartas</button>
-        <button id="restart" type="button">recolher da mesa</button>
-        <button id="hidehand" type="button">esconder mão</button>
-        <button id="showhand" type="button">mostrar mão</button>
-      </div>
+      <button id="hideall" type="button">virar cartas</button>
+      <button id="restart" type="button">tirar da mesa</button>
     </div>
-    <div class="hand"></div>
+    <div class="discard" id="graveyard"><span>cemitério</span></div>
   </div>
-
   <script src="script.js"></script>
 </body>
 
