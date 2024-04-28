@@ -4,9 +4,9 @@ function createNode(data) {
   card.setAttribute("id", data.id)
   card.draggable = true
   if (data.type == 'skull') {
-    card.innerHTML = `<h1 id=${data.id}>&#9940;</h1>`
+    card.innerHTML = `<h1 id=${data.id}></h1>`
   } else {
-    card.innerHTML = `<h1 id=${data.id}>&#9989;</h1>`
+    card.innerHTML = `<h1 id=${data.id}></h1>`
   }
 
   return card
@@ -25,7 +25,7 @@ function defineSkull() {
     id: number,
     type: 'skull',
     html: createNode({ id: number, type: 'skull' }),
-    place: 'hand',
+    place: 'cards',
     active: true,
     visible: true,
     pos: 0
@@ -48,7 +48,7 @@ const gcards = [
     id: 1,
     type: 'rose',
     html: createNode({ id: 1, type: 'rose' }),
-    place: 'hand',
+    place: 'cards',
     active: true,
     visible: true,
     pos: 0
@@ -57,7 +57,7 @@ const gcards = [
     id: 2,
     type: 'rose',
     html: createNode({ id: 2, type: 'rose' }),
-    place: 'hand',
+    place: 'cards',
     active: true,
     visible: true,
     pos: 0
@@ -66,7 +66,7 @@ const gcards = [
     id: 3,
     type: 'rose',
     html: createNode({ id: 3, type: 'rose' }),
-    place: 'hand',
+    place: 'cards',
     active: true,
     visible: true,
     pos: 0
@@ -75,22 +75,20 @@ const gcards = [
     id: 4,
     type: 'rose',
     html: createNode({ id: 4, type: 'rose' }),
-    place: 'hand',
+    place: 'cards',
     active: true,
     visible: true,
     pos: 0
   }
 ]
 
-const ghand = document.querySelector('.hand');
+const ghand = document.querySelector('.cards');
 const gtable = document.querySelector('.table');
 
 function renderGame() {
 
   ghand.innerHTML = ""
   gtable.innerHTML = ""
-
-
   for (let card of gcards) {
 
     card.html.style.order = card.pos
@@ -98,19 +96,16 @@ function renderGame() {
 
     if (!card.visible) {
       card.html.classList.add("hidden")
-      card.html.children[0].classList.add("hide")
     } else {
       card.html.classList.remove("hidden")
-      card.html.children[0].classList.remove("hide")
     }
     if (!card.active) {
       card.html.classList.remove("hidden")
       card.html.classList.add("dead")
       card.html.draggable = false
-      card.html.children[0].classList.add("hide")
     }
 
-    if (card.place == 'hand') {
+    if (card.place == 'cards') {
       ghand.appendChild(card.html)
     } else {
       gtable.appendChild(card.html)
@@ -119,10 +114,11 @@ function renderGame() {
 }
 
 function mechanics() {
-  // Add dragstart and dragend event listeners to each card
   ghand.addEventListener('dragstart', (e) => {
     const target = e.target;
     selected = e.target.id
+
+    console.log("ARRAST", selected)
 
     if (target.classList.contains('card')) {
       e.dataTransfer.setData('text/plain', target.textContent);
@@ -141,6 +137,7 @@ function mechanics() {
         tablePos += 1
         card.pos = tablePos
         card.place = 'table'
+        card.html.draggable = false
       }
     }
     renderGame()
@@ -167,7 +164,8 @@ function mechanics() {
   const restart = document.getElementById("restart")
   restart.addEventListener('click', () => {
     for (card of gcards) {
-      card.place = 'hand'
+      card.place = 'cards'
+      card.html.draggable = true
     }
     renderGame()
   })
@@ -181,21 +179,12 @@ function mechanics() {
   graveyard.addEventListener('drop', () => {
     for (card of gcards) {
       if (card.id == selected) {
+        console.log(selected)
         card.active = false
       }
     }
 
     renderGame()
-  })
-
-  document.getElementById("hidehand")
-  hidehand.addEventListener('click', () => {
-    ghand.classList.add("hide")
-  })
-
-  document.getElementById("showhand")
-  showhand.addEventListener('click', () => {
-    ghand.classList.remove("hide")
   })
 }
 
@@ -203,9 +192,8 @@ let selected = 0
 
 let tablePos = 0
 
-defineSkull()
+ defineSkull()
 
 renderGame()
-
 mechanics()
 
